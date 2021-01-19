@@ -9,6 +9,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 @Entity
 public class Morada implements Serializable {
 	private static final long serialVersionUID = 1L;
@@ -22,6 +24,7 @@ public class Morada implements Serializable {
 	private String bairro;
 	private String cep;
 
+	@JsonBackReference
 	@ManyToOne
 	@JoinColumn(name = "cliente_id")
 	private Cliente cliente;
@@ -30,6 +33,10 @@ public class Morada implements Serializable {
 	@JoinColumn(name = "cidade_id")
 	private Cidade cidade;
 
+	public Morada() {
+		
+	}
+	
 	public Morada(Integer id, String logradouro, String numero, String complemento, String bairro, String cep,
 			Cliente cliente, Cidade cidade) {
 		super();
